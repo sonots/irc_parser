@@ -9,7 +9,7 @@ module IRCParser
 
   def message(identifier, prefix = nil, params = nil)
     klass = Messages::ALL[identifier]
-    raise IRCParser::Parser::Error, "Message not recognized: #{message.inspect}" unless klass
+    raise IRCParser::ParserError, "Message not recognized: #{message.inspect}" unless klass
     obj = klass.new(prefix, params)
     yield obj if block_given?
     obj
